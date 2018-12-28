@@ -1,0 +1,8 @@
+__pycache__/
+logs/*
+checkpoints/*
+*.mid
+*.midi
+*.py[cod]
+.DS_Store
+!*/.gitkeep 

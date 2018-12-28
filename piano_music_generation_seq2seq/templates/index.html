@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Music Generator</title>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script type='text/javascript' src='https://kitchwww.github.io/midi/midi.js'></script>
+    <script src="http://homecox.com/games/midi/javascript/midi.js"></script>
+    <style>
+    .rcorners {
+    border-radius: 25px;
+    border: 2px solid #48DDCC;
+    padding: 20px;
+    width: 60%;
+    height: auto;
+    align-items: : center;
+}
+.rcorners2 {
+border-radius: 25px;
+border: 2px solid #48DDCC;
+padding: 20px;
+width: 60%;
+height: 1000px;
+align-items: : center;
+}
+#btn2 {
+    width: 100%;
+    height: 20%;
+    font-size: 25px;
+}
+    </style>
+  </head>
+  <body>
+    <h3 align="center">Music Generator</h2>
+      <div class="rcorners" align="center" style="width:800px; margin:0 auto;">
+        <p style="font-family:courier;" align="left" >
+          Demo for Music generation. Upload your midi/mid file that you have composed till now.
+          And we will take it ahead from there.
+        </p>
+      </div>
+    <div class="rcorners" align="center" style="width:800px; margin:0 auto;">
+      <form id="optionForm">
+        <button type="button" name="button" id = "btnfile">
+          <img src="static/assets/upload.png" alt=""  width='100' height='100'>
+        </button>
+        <input type="file" name="midifile" id="uploaded_midi" style="display:none;">
+        <br>
+        <span id="fname" style="font-family:courier;"></span>
+        <br>
+
+        <button type="button" id="submitbutton">Submit</button>
+      </form>
+      <!-- <div id="optiondiv">
+
+      </div> -->
+    </div>
+    <div class="rcorners2" id="results" align="left" style="width:800px; margin:0 auto;font-family:courier;">
+      <input type="button" value="play" id='btn2' onclick="doPlay(mp2, this);"/>
+      <!-- <button onclick="doPlay(mp2, this)">Click me</button> -->
+
+    </div>
+  </body>
+  <script type="text/javascript">
+  function doPlay(m, btn) {
+      if (btn.value == 'play') {
+          m.play();
+          btn.value = 'stop';
+      }
+      else {
+          m.stop();
+          btn.value = 'play';
+      }
+  };
+  var mp2;
+
+    $(document).ready(function () {
+    var midifile;
+    $("#btnfile").click(function () {
+    $("#uploaded_midi").click();
+  });
+
+
+  console.log(doPlay);
+
+
+
+
+    $("#uploaded_midi").change(function () {
+      // midifile=$(this).val().replace(/C:\\fakepath\\/ig,'');
+      midifile=$(this).val();
+    console.log(midifile);
+    var temp = midifile.replace(/C:\\fakepath\\/ig,'');
+    $("#fname").text("You have uploaded " + temp);
+    });
+
+    $("#submitbutton").click(function () {
+      console.log('clicked', midifile);
+      // $("#results").html('');
+      var form = new FormData();
+      var fileInputElement = document.getElementById('uploaded_midi');
+      // form.append("midifile", midifile);
+      form.append("midifile", fileInputElement.files[0]);
+      console.log(form);
+      $.ajax({
+                type: 'POST',
+                url: `/generate`,
+                processData: false,
+                contentType: false,
+                async: false,
+                cache: false,
+                data: form,
+                success: function (data) {
+                  console.log('check'+doPlay);
+
+                  // $("#results").html('');
+                  console.log(data);
+                  // $("#results").append(data.generated);
+                  // $("#results").append("<audio controls><source src='" + data.generated + "' type='audio/midi' </audio>");
+                  // $("#results").append("<audio controls><source src='" + data.generated + "' type='audio/midi' </audio>");
+                  var stuff = "MIDIjs.play('" + data.generated + "');";
+                  console.log(stuff);
+                  // $("#results").append("<a href='#' onClick=" + stuff + ">Play My Song</a>");
+
+                  // $("#results").append("<input type='button' value='play' id='btn2' onclick='doPlay(mp2,this);'/>");
+                  mp2 = new MidiPlayer(data.generated, 'btn2');
+                  }
+            })
+    })
+  })
+
+  </script>
+</html>
