@@ -17,9 +17,9 @@ Thing I tried but ran out of time:
 - Biaxial RNN (<https://github.com/hexahedria/biaxial-rnn-music-composition>)
 - Classical Piano composer <https://github.com/Skuldur/Classical-Piano-Composer>
 - Clara: A Neural Net Music Generator at <https://github.com/mcleavey/musical-neural-net>
-<br>
 I was excited about the last one because I thought the way that Christine Payne (OpenAI) has converted music to vectors is very innovative.
- You can find details at <http://christinemcleavey.com/clara-a-neural-net-music-generator> but ran out of time.
+ You can find her blog about it [here](http://christinemcleavey.com/clara-a-neural-net-music-generator)
+ But ran out of time.
 
 #### Why Christine's pre-processing is so smart?
 In her own words:
