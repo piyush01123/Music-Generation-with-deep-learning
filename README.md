@@ -4,11 +4,12 @@ Code for music generation that I wrote in a 2-day hackathon.
 
 
 Things I completed:
-- Lyrics Generation with LSTM on word vectors
-- Lyrics Generation with char-LSTM
-- Piano music with seq2seq model
+- Lyrics Generation with LSTM on word vectors,
+Credits to <https://github.com/keras-team/keras/blob/master/examples/lstm_text_generation.py>
+- Lyrics Generation with char-LSTM, Credits to <https://github.com/dyelax/encore.ai>
+- Piano music with seq2seq model, Credits to <https://github.com/Azure/MachineLearning-MusicGeneration>
 
-All 3 folders have a web-based demo (in flask).
+All 3 have a web-based demo (in flask).
 
 
 Thing I tried but ran out of time:
@@ -18,9 +19,9 @@ Thing I tried but ran out of time:
 - Clara: A Neural Net Music Generator at <https://github.com/mcleavey/musical-neural-net>
 <br>
 I was excited about the last one because I thought the way that Christine Payne (OpenAI) has converted music to vectors is very innovative.
- You can find details at <http://christinemcleavey.com/clara-a-neural-net-music-generator/>. But ran out of time.
+ You can find details [here](http://christinemcleavey.com/clara-a-neural-net-music-generator/). But ran out of time.
 
-#### Why this is so smart?
+#### Why Christine's pre-processing is so smart?
 In her own words:
 One option would be to ask the model to predict yes/no for each of the 88 piano keys, at every musical time step.
 <b>(Every other implementation has done exactly this.)</b>
@@ -29,6 +30,6 @@ However, since each individual key is silent for the great majority of the time,
 She goes on to explain how she constructed these chordwise and notewise vectors.
 
 
-#### What can be done
+#### What's next
 I want to use Christine's preprocessing technique and try other models with those vectors (GAN is a first thought).
 Will post an update with new implementation soon.
