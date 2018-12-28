@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Lyrics Generator</title>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <style>
+    .rcorners {
+    border-radius: 25px;
+    border: 2px solid #48DDCC;
+    padding: 20px;
+    width: 60%;
+    height: auto;
+    align-items: : center;
+}
+.rcorners2 {
+border-radius: 25px;
+border: 2px solid #48DDCC;
+padding: 20px;
+width: 60%;
+height: 1000px;
+align-items: : center;
+}
+
+
+    </style>
+  </head>
+  <body>
+    <h3 align="center">Lyrics Generator</h2>
+      <div class="rcorners" align="center" style="width:800px; margin:0 auto;">
+        <p style="font-family:courier;" align="left" >
+          Demo for lyrics generation - Part 2. Give us 5 words and we will come up with a Pink Floyd like lyrics with it.
+
+        </p>
+      </div>
+    <div class="rcorners" align="center" style="width:800px; margin:0 auto;">
+      <form id="optionForm">
+        <input type="text" name="" id="search_text1" placeholder="Enter a feeling">
+        <br>
+        <input type="text" name="" id="search_text2" placeholder="Enter a thing">
+        <br>
+        <input type="text" name="" id="search_text3" placeholder="Enter a body part">
+        <br>
+        <input type="text" name="" id="search_text4" placeholder="Enter a food">
+        <br>
+        <input type="text" name="" id="search_text5" placeholder="Enter an element">
+        <br>
+        <!-- <textarea rows="4" cols="100" placeholder="Give us what you got till now.." id="search_text"></textarea> -->
+        <button type="button" id="submit_text">Submit</button>
+      </form>
+      <!-- <div id="optiondiv">
+
+      </div> -->
+    </div>
+    <div class="rcorners2" id="results" align="left" style="width:800px; margin:0 auto;font-family:courier;">
+
+    </div>
+  </body>
+  <script type="text/javascript">
+  $(document).ready(function () {
+    $("#submit_text").click(function () {
+      var search_text1 = $("#search_text1").val();
+      var search_text2 = $("#search_text2").val();
+      var search_text3 = $("#search_text3").val();
+      var search_text4 = $("#search_text4").val();
+      var search_text5 = $("#search_text5").val();
+      console.log(search_text5);
+      $("#results").html('');
+      $("#optiondiv").html('');
+      $.ajax({
+          url: `/lyricsfive`,
+          contentType: "application/json",
+          type: 'POST',
+          dataType: 'json',
+          data: JSON.stringify({
+            search_text: [search_text1, search_text2, search_text3, search_text4, search_text5]
+          }),
+          success: function (data) {
+            $("#results").html('');
+            console.log(data);
+            $("#results").append(data.generated);
+            // var valid_search = data.valid_search;
+            // if (valid_search==true){
+            //   var event_df = data.event_df;
+            //   $("#results").append(event_df);
+            // }else {
+            //   var search_result = data.search_result;
+            //   console.log('the search_results', search_result);
+            //
+            //   var searches = "<select id = 'option_texts'>  <option>Select an option"
+            //   for (var i = 0; i < Math.min(search_result.length, 10); i++) {
+            //     // searches = searches + "<a href = 'https://google.com' >" + search_result[i] + "</a><br>";
+            //     searches = searches + "  <option value='" + search_result[i] + "'>" + search_result[i]+ "</option>'";
+            //   }
+            //   searches = searches + "</select>";
+            //   console.log(searches);
+            //   $("#optiondiv").append("<br><p align = 'left'><b>There are multiple wikipedia articles with that word. Please select an option from the dropdown.</b></p><br>" + searches);
+            //   $("#option_texts").change(function(){
+            //     console.log("The text has been changed.");
+            //     var search_text = $("#option_texts").val();
+            //     console.log(search_text);
+            //     $.ajax({
+            //         url: `/search`,
+            //         contentType: "application/json",
+            //         type: 'POST',
+            //         dataType: 'json',
+            //         data: JSON.stringify({
+            //           search_text: search_text
+            //         }),
+            //         success: function (data) {
+            //           $("#results").html('');
+            //           console.log(data);
+            //             var event_df = data.event_df;
+            //             $("#results").append(event_df);
+            //           }
+            //         })
+            //
+            //
+            //   });
+            //
+            //
+            //
+            // }
+            }
+            })
+    })
+  })
+
+  </script>
+</html>
