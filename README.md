@@ -1,6 +1,6 @@
 
 Code for music generation that I wrote in a 2-day hackathon.
-[Presentation](https://github.com/piyush-kgp/Music-Generation-with-AI/Music%20generation%20with%20AI.pdf)
+[Presentation](https://github.com/piyush-kgp/Music-Generation-with-AI/blob/master/Music%20generation%20with%20AI.pdf)
 
 
 Things I completed:
@@ -8,7 +8,7 @@ Things I completed:
 - Lyrics Generation with char-LSTM
 - Piano music with seq2seq model
 
-All 3 folders have a demo (in flask).
+All 3 folders have a web-based demo (in flask).
 
 
 Thing I tried but ran out of time:
