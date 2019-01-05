@@ -13,7 +13,7 @@ for i, link in enumerate(links):
     try:
         if link['href'].endswith('.mid'):
             file_path = os.path.join(DATA_DIR, '_'.join(link.string.strip().split())+'.mid')
-            print(file_path)
+            print('Saving %s from %s' %(file_path, link['href']))
             urllib.request.urlretrieve(link['href'], file_path)
     except:
         pass
