@@ -170,6 +170,7 @@ class LSTMModel:
             prime = np.random.choice(self.vocab)
         else:
             prime = unkify(prime, self.vocab)
+        print('PRIME', prime)
 
         # prime the model state
         for word in prime.split():

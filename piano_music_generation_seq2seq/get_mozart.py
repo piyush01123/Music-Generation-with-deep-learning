@@ -3,10 +3,10 @@ import urllib
 import os
 
 # URL = 'http://www.kunstderfuge.com'
-URL = 'http://midiworld.com/mozart.htm'
+URL = 'http://midiworld.com/'
 DATA_DIR = 'data/'
 
-soup = bs(urllib.request.urlopen(urllib.request.Request(URL+'/mozart.htm')))
+soup = bs(urllib.request.urlopen(urllib.request.Request(URL+'mozart.htm')))
 links = soup.find_all('a')
 
 for i, link in enumerate(links):
@@ -17,4 +17,3 @@ for i, link in enumerate(links):
             urllib.request.urlretrieve(link['href'], file_path)
     except:
         pass
-

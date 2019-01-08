@@ -1,2 +1,0 @@
-for t, char in enumerate(input_text):
-    x[0, t, char_to_index[char]] = 1.
